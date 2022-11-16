@@ -6,6 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
+    "noImplicitAny": false, //不需要显示地声明变量的类型为any
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -18,7 +19,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ]
   },
   "include": [
     "src"
