@@ -1,7 +1,6 @@
 import { Image, Typography } from 'antd';
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'
 
 interface PropsType {
   title: string;
@@ -12,7 +11,6 @@ interface PropsType {
 }
 
 export const ProductImage: FC<PropsType> = ({ title, id, size, imageSrc, price }) => {
-  const navigate = useNavigate()
 
   return (
     <Link to={`detail/${id}`}>

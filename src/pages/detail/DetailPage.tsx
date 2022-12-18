@@ -1,36 +1,38 @@
-import React, { FC, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { FC, useEffect } from 'react'
+// import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { Spin, Row, Col, DatePicker } from 'antd'
 import { Header, Footer } from '../../components'
-import styles from './Detail.module.css'
+import styles from './DetailPage.module.css'
+import { useSelector } from '../../redux/hooks'
+import { useDispatch } from 'react-redux'
+import { productDetailSlice } from '../../redux/productDetail/slice'
 
-type MatchParams = {
-  touristRouteId: string
-}
+// type MatchParams = {
+//   touristRouteId: string
+// }
 
 export const DetailPage: FC = () => {
-  const { touristRouteId } = useParams<MatchParams>()
-  const [loading, setLoading] = useState<boolean>(true)
-  const [product, setProduct] = useState<any>(null)
-  const [error, setError] = useState<string | null>(null)
-
+  // const { touristRouteId } = useParams<MatchParams>()
+  const loading = useSelector(state => state.productDetail.loading)
+  const error = useSelector(state => state.productDetail.error)
+  const product = useSelector(state => state.productDetail.data)
   const RangePicker: any = DatePicker.RangePicker
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const fetchData = async () => {
+      dispatch(productDetailSlice.actions.fetchStart())
       try {
-        setLoading(true)
-        const data = await axios.get('https://094ea775-6e94-4bbe-a815-156e5348b9c5.mock.pstmn.io/search')
-        setProduct(data)
-        setLoading(false)
-
+        const { data } = await axios.get('https://4c15ac23-f59b-4392-9db2-b9b3193aee9a.mock.pstmn.io')
+        dispatch(productDetailSlice.actions.fetchSuccess(data))
       } catch (error: any) {
-        setError(error.message)
+        dispatch(productDetailSlice.actions.fetchFail(error))
       }
     }
     fetchData()
-  }, [])
+  }, [dispatch])
+
   if (loading) {
     return (
       <Spin
@@ -60,7 +62,9 @@ export const DetailPage: FC = () => {
         {/* 产品简介 */}
         <div className={styles['product-intro-container']}>
           <Row>
-            <Col span={13}></Col>
+            <Col span={13}>
+              name :{product.name}
+            </Col>
             <Col span={11}>
               <RangePicker open />
             </Col>

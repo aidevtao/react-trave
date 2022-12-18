@@ -1,7 +1,4 @@
 import React, { FC, useState } from 'react'
-import store from '../../redux/store'
-import { useSelector, useDispatch } from 'react-redux'
-import { LanguageState } from '../../redux/languageReducer'
 import styles from './Header.module.css'
 
 import {
