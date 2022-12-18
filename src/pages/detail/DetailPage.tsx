@@ -1,19 +1,19 @@
 import React, { FC, useEffect } from 'react'
-// import { useParams } from 'react-router-dom'
-import axios from 'axios'
+import { RouteProps, useParams } from 'react-router-dom'
+// import axios from 'axios'
 import { Spin, Row, Col, DatePicker } from 'antd'
 import { Header, Footer } from '../../components'
 import styles from './DetailPage.module.css'
 import { useSelector } from '../../redux/hooks'
 import { useDispatch } from 'react-redux'
-import { productDetailSlice } from '../../redux/productDetail/slice'
+import { getProductDetail } from '../../redux/productDetail/slice'
 
-// type MatchParams = {
-//   touristRouteId: string
-// }
+type MatchParams = {
+  touristRouteId: string
+}
 
-export const DetailPage: FC = () => {
-  // const { touristRouteId } = useParams<MatchParams>()
+export const DetailPage: FC<RouteProps> = () => {
+  const { touristRouteId } = useParams<MatchParams>()
   const loading = useSelector(state => state.productDetail.loading)
   const error = useSelector(state => state.productDetail.error)
   const product = useSelector(state => state.productDetail.data)
@@ -21,17 +21,18 @@ export const DetailPage: FC = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    const fetchData = async () => {
-      dispatch(productDetailSlice.actions.fetchStart())
-      try {
-        const { data } = await axios.get('https://4c15ac23-f59b-4392-9db2-b9b3193aee9a.mock.pstmn.io')
-        dispatch(productDetailSlice.actions.fetchSuccess(data))
-      } catch (error: any) {
-        dispatch(productDetailSlice.actions.fetchFail(error))
-      }
-    }
-    fetchData()
-  }, [dispatch])
+    // const fetchData = async () => {
+    //   // dispatch(productDetailSlice.actions.fetchStart())
+    //   // try {
+    //   //   const { data } = await axios.get('https://4c15ac23-f59b-4392-9db2-b9b3193aee9a.mock.pstmn.io')
+    //   //   dispatch(productDetailSlice.actions.fetchSuccess(data))
+    //   // } catch (error: any) {
+    //   //   dispatch(productDetailSlice.actions.fetchFail(error))
+    //   // }
+    // }
+    // fetchData()
+    dispatch(getProductDetail(touristRouteId))
+  }, [])
 
   if (loading) {
     return (

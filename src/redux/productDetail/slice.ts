@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 interface ProductDetailState {
   loading: boolean,
@@ -12,18 +13,36 @@ const initialState: ProductDetailState = {
   data: null,
 }
 
+export const getProductDetail = createAsyncThunk(
+  'productDetail/getProductDetail',
+  async (touristRouteId: string | undefined, thunkAPI) => {
+    // thunkAPI.dispatch(productDetailSlice.actions.fetchStart())
+    // try {
+    //   const { data } = await axios.get('https://4c15ac23-f59b-4392-9db2-b9b3193aee9a.mock.pstmn.io')
+    //   thunkAPI.dispatch(productDetailSlice.actions.fetchSuccess(data))
+    // } catch (error: any) {
+    //   thunkAPI.dispatch(productDetailSlice.actions.fetchFail(error))
+    // }
+    const { data } = await axios.get('https://4c15ac23-f59b-4392-9db2-b9b3193aee9a.mock.pstmn.io')
+    return data
+  }
+)
+
 export const productDetailSlice = createSlice({
   name: 'productDetail',
   initialState,
   reducers: {
-    fetchStart: (state) => {
+
+  },
+  extraReducers: {
+    [getProductDetail.pending.type]: (state) => {
       state.loading = true
     },
-    fetchSuccess: (state, action) => {
+    [getProductDetail.fulfilled.type]: (state, action) => {
       state.data = action.payload
       state.loading = false
     },
-    fetchFail: (state, aciton: PayloadAction<string | null>) => {
+    [getProductDetail.rejected.type]: (state, aciton: PayloadAction<string | null>) => {
       state.loading = false
       state.error = aciton.payload
     }
