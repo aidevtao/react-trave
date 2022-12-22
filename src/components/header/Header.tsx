@@ -71,6 +71,7 @@ export const Header: FC = () => {
         <Input.Search
           placeholder='请输入旅游目的地、主题、或关键字'
           className={styles['search-input']}
+          onSearch={(keywords) => navigate('/search/' + keywords)}
         />
       </Layout.Header>
       <Menu items={menuItems} mode='horizontal' className={styles['main-menu']} />

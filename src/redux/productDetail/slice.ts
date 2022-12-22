@@ -23,7 +23,7 @@ export const getProductDetail = createAsyncThunk(
     // } catch (error: any) {
     //   thunkAPI.dispatch(productDetailSlice.actions.fetchFail(error))
     // }
-    const { data } = await axios.get('https://4c15ac23-f59b-4392-9db2-b9b3193aee9a.mock.pstmn.io')
+    const { data } = await axios.get('https://b9059782-1b4b-4cd9-a826-2f87e5a7fe7e.mock.pstmn.io')
     return data
   }
 )
