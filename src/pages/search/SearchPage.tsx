@@ -8,6 +8,7 @@ import { Spin } from 'antd'
 import { searchProduct } from '../../redux/productSearch/slice'
 import { useSelector } from '../../redux/hooks'
 import { useDispatch } from 'react-redux'
+import { MainLayout } from '../../layouts/mainLayout'
 
 
 type MetchParams = {
@@ -51,8 +52,7 @@ export const SearchPage: FC = () => {
   }
 
   return (
-    <>
-      <Header />
+    <MainLayout>
       <div className={styles['page-content']}>
         <div className={styles['product-list-container']}>
           <FilterArea />
@@ -65,7 +65,6 @@ export const SearchPage: FC = () => {
           />
         </div>
       </div>
-      <Footer />
-    </>
+    </MainLayout>
   )
 }

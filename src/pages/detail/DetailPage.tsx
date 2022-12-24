@@ -7,6 +7,7 @@ import styles from './DetailPage.module.css'
 import { useSelector } from '../../redux/hooks'
 import { useDispatch } from 'react-redux'
 import { getProductDetail } from '../../redux/productDetail/slice'
+import { MainLayout } from '../../layouts/mainLayout'
 
 type MatchParams = {
   touristRouteId: string
@@ -57,26 +58,22 @@ export const DetailPage: FC<RouteProps> = () => {
   }
 
   return (
-    <div>
-      <Header />
-      <div className={styles['page-content']}>
-        {/* 产品简介 */}
-        <div className={styles['product-intro-container']}>
-          <Row>
-            <Col span={13}>
-              name :{product.name}
-            </Col>
-            <Col span={11}>
-              <RangePicker open />
-            </Col>
-          </Row>
-        </div>
-        {/* 锚点菜单 */}
-        <div className={styles['product-detail-anchor']}></div>
-        {/* 产品特色 */}
-        <div className={styles['product-detail-container']}></div>
+    <MainLayout>
+      {/* 产品简介 */}
+      <div className={styles['product-intro-container']}>
+        <Row>
+          <Col span={13}>
+            name :{product.name}
+          </Col>
+          <Col span={11}>
+            <RangePicker open />
+          </Col>
+        </Row>
       </div>
-      <Footer />
-    </div>
+      {/* 锚点菜单 */}
+      <div className={styles['product-detail-anchor']}></div>
+      {/* 产品特色 */}
+      <div className={styles['product-detail-container']}></div>
+    </MainLayout>
   )
 }

@@ -56,8 +56,8 @@ export const Header: FC = () => {
         </div>
         <div className={styles['top-header-user']}>
           <Button.Group className={styles['button-group']}>
-            <Button onClick={() => navigate('signIn')}>登陆</Button>
-            <Button onClick={() => navigate('register')}>注册</Button>
+            <Button onClick={() => navigate('/signIn')}>登陆</Button>
+            <Button onClick={() => navigate('/register')}>注册</Button>
           </Button.Group>
         </div>
       </div>

@@ -1,10 +1,22 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import styles from './RegisterPage.module.css'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const RegisterForm: React.FC = () => {
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
+  const navigate = useNavigate()
+  const onFinish = async (values: any) => {
+    try {
+      axios.post('https://17448c77-cd02-484e-826e-d0ebd8aa4173.mock.pstmn.io/auth/register', {
+        email: values.username,
+        password: values.password,
+        confirmPassword: values.confirm
+      })
+      navigate('/signin')
+    } catch (error) {
+      alert(error)
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {
