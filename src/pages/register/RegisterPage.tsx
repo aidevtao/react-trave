@@ -1,7 +1,11 @@
 import React, { FC } from 'react'
+import { UserLayout } from '../../layouts/userLayout'
+import { RegisterForm } from './RegisterForm'
 
 export const RegisterPage: FC = () => {
   return (
-    <div>register page</div>
+    <UserLayout>
+      <RegisterForm />
+    </UserLayout>
   )
 }
