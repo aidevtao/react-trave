@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import styles from './Header.module.css'
 
 import {
@@ -11,18 +11,30 @@ import {
 } from 'antd'
 import type { MenuProps } from 'antd';
 import { useNavigate } from 'react-router-dom'
-import { GlobalOutlined } from "@ant-design/icons";
-import logo from '../../assets/logo.svg';
+import { GlobalOutlined } from "@ant-design/icons"
+import logo from '../../assets/logo.svg'
+import { useSelector } from '../../redux/hooks'
+import jwtDecode, { JwtPayload as DefaultJwtPayload } from 'jwt-decode';
+import { useDispatch } from 'react-redux';
+import { userSlice } from '../../redux/user/slice';
+
+interface JwtPayload extends DefaultJwtPayload {
+  name: string
+}
 
 export const Header: FC = () => {
-  // const language = useSelector((state: LanguageState) => state.language)
-  // const languageList = useSelector((state: LanguageState) => state.languageList)
-  // const state = {
-  //   language,
-  //   languageList,
-  // }
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [languagePlaceHold, setLanguagePlaceHold] = useState('中文')
+  const [username, setUsername] = useState('')
+  const jwt = useSelector(s => s.user.token)
+
+  useEffect(() => {
+    if (jwt) {
+      const token = jwtDecode<JwtPayload>(jwt)
+      setUsername(token.name)
+    }
+  }, [jwt])
 
   const menuItems = [
     { label: '菜单项一', key: 'item-1' }, // 菜单项务必填写 key
@@ -35,6 +47,12 @@ export const Header: FC = () => {
   const languageClick: MenuProps['onClick'] = ({ key, keyPath, domEvent }) => {
     setLanguagePlaceHold(key === 'cn' ? '中文' : 'english')
   }
+
+  const onLogout = () => {
+    dispatch(userSlice.actions.logOut())
+    navigate('/')
+  }
+
   return (
     <div className={styles['app-header']}>
       <div className={styles['top-header']}>
@@ -55,10 +73,22 @@ export const Header: FC = () => {
           </Dropdown.Button>
         </div>
         <div className={styles['top-header-user']}>
-          <Button.Group className={styles['button-group']}>
-            <Button onClick={() => navigate('/signIn')}>登陆</Button>
-            <Button onClick={() => navigate('/register')}>注册</Button>
-          </Button.Group>
+          {
+            jwt ?
+              <Button.Group className={styles['button-group']}>
+                <span>
+                  欢迎：<Typography.Text strong>{username}</Typography.Text>
+                </span>
+                <Button>购物车</Button>
+                <Button onClick={onLogout}>登出</Button>
+              </Button.Group>
+              :
+              <Button.Group className={styles['button-group']}>
+                <Button onClick={() => navigate('/signIn')}>登陆</Button>
+                <Button onClick={() => navigate('/register')}>注册</Button>
+              </Button.Group>
+          }
+
         </div>
       </div>
       <Layout.Header className={styles['main-header']}>
