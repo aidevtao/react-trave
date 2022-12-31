@@ -25,9 +25,13 @@ interface JwtPayload extends DefaultJwtPayload {
 export const Header: FC = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
   const [languagePlaceHold, setLanguagePlaceHold] = useState('中文')
   const [username, setUsername] = useState('')
   const jwt = useSelector(s => s.user.token)
+
+  const { items: shoppingCartItems, loading: shoppingCartLoading } = useSelector((s) => s.shoppingCart)
+
 
   useEffect(() => {
     if (jwt) {
@@ -51,6 +55,9 @@ export const Header: FC = () => {
   const onLogout = () => {
     dispatch(userSlice.actions.logOut())
     navigate('/')
+  }
+  const shoppingCartHandle = () => {
+    navigate('/cart')
   }
 
   return (
@@ -79,7 +86,7 @@ export const Header: FC = () => {
                 <span>
                   欢迎：<Typography.Text strong>{username}</Typography.Text>
                 </span>
-                <Button>购物车</Button>
+                <Button loading={shoppingCartLoading} onClick={shoppingCartHandle}>购物车{shoppingCartItems.length}</Button>
                 <Button onClick={onLogout}>登出</Button>
               </Button.Group>
               :

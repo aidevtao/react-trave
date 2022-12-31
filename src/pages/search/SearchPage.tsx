@@ -1,6 +1,5 @@
 import React, { FC, useEffect } from 'react'
 import styles from './SearchPage.module.css'
-import { Footer, Header } from '../../components'
 import { FilterArea } from '../../components/'
 import { ProductList } from '../../components/'
 import { useParams, useLocation } from 'react-router-dom'
@@ -27,7 +26,7 @@ export const SearchPage: FC = () => {
 
   useEffect(() => {
     dispatch(searchProduct({ nextPage: 1, pageSize: 10, keywords }))
-  }, [location])
+  }, [location, dispatch, keywords])
 
   const onPageChange = (nextPage, pageSize) => {
     dispatch(searchProduct({ nextPage, pageSize, keywords }))

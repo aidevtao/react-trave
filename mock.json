@@ -3,7 +3,7 @@
     "data": [
       {
         "departureCity": "上海",
-        "description": "外滩位于陆家嘴的中心地带，经济发达的一批",
+        "description": "外滩位于陆家嘴的中心地带,经济发达的一批",
         "discountPresent": "8",
         "id": "21-21-212123",
         "originalPrice": "10",
@@ -16,7 +16,7 @@
       },
       {
         "departureCity": "上海",
-        "description": "东方明珠位于陆家嘴的中心地带，经济发达的一批",
+        "description": "东方明珠位于陆家嘴的中心地带,经济发达的一批",
         "discountPresent": "5",
         "id": "31-31-212123",
         "originalPrice": "100",
@@ -40,5 +40,65 @@
   },
   "login-responce": {
     "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJpZC0xLTEtMS0yIiwiZW1pYWwiOiJhZG1pbkBxcS5jb20iLCJyb2xlIjoiYWRtaW4iLCJuYW1lIjoiSm9obiBEb2UiLCJuYmYiOjEzNTMyNDU2NDIzLCJpYXQiOjE1MTYyMzkwMjIsImV4cCI6MTU5Mjc2MjAwOH0.xKd7nhTKNmh2vlsZi97FAsrSfHQikZLw2emb9oFpqz0"
+  },
+  "shoppingCart": {
+    "id": "21-21-212123",
+    "userID": "24324-43232-432432-2",
+    "shoppingCartItems": [
+      {
+        "id": "323j43-43j43j4-dss223",
+        "touristRouteId": "75fff-3243-fff43",
+        "touristRoute": {
+          "title": "摩洛哥撒哈拉沙漠＋卡萨布兰卡＋马拉喀什＋舍夫沙万12日跟团游（4钻）",
+          "description": "【世界加油】明星一价全包｜免签｜25人封顶｜特色沙漠酒店夜观繁星＋卡萨升国5喜来登｜赠骆驼骑行换装秀＋撒哈拉四驱车＋YSL花园下午茶＋表演秀｜网红餐厅",
+          "price": 15490.00,
+          "originalPrice": 15490.00,
+          "discountPresent": null,
+          "rating": 3.2,
+          "travelDays": "Three",
+          "tripType": "BackPackTour",
+          "departureCity": "Shenzhen",
+          "createTime": "0001-01-01T00:00:00",
+          "updateTime": null,
+          "departureTime": null,
+          "touristRoutePictures": [
+            {
+              "id": 28,
+              "url": ""
+            }
+          ]
+        },
+        "shoppingCartId": "432432d-43fd232-ffdfd334",
+        "originalPrice": "1234,00",
+        "discountPresent": null
+      },
+      {
+        "id": "444j43-43j43j4-dss223",
+        "touristRouteId": "75fff-3243-fff43",
+        "touristRoute": {
+          "title": "东方明珠＋卡萨布兰卡＋马拉喀什＋舍夫沙万12日跟团游（5钻）",
+          "description": "【上海加油】明星一价全包｜免签｜25人封顶｜特色沙漠酒店夜观繁星＋卡萨升国5喜来登｜赠骆驼骑行换装秀＋撒哈拉四驱车＋YSL花园下午茶＋表演秀｜网红餐厅",
+          "price": 15490.00,
+          "originalPrice": 15490.00,
+          "discountPresent": null,
+          "rating": 4.2,
+          "travelDays": "TWO",
+          "tripType": "BackPackTour",
+          "departureCity": "ShangHai",
+          "createTime": "0001-01-01T00:00:00",
+          "updateTime": null,
+          "departureTime": null,
+          "touristRoutePictures": [
+            {
+              "id": 28,
+              "url": ""
+            }
+          ]
+        },
+        "shoppingCartId": "432432d-43fd232-ffdfd334",
+        "originalPrice": "1334,00",
+        "discountPresent": null
+      }
+    ]
   }
 }

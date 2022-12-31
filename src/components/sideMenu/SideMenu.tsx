@@ -1,35 +1,67 @@
-import React, { FC } from 'react'
+import React, { FC, ReactNode } from 'react'
 import styles from './SideMenu.module.css'
-import { sideMenuList } from './mockup'
-import { Menu } from 'antd'
+import { sideMenuList as sideMenuListMock } from './mockup'
+import { Menu, MenuProps } from 'antd'
 import { GifOutlined } from '@ant-design/icons'
+
+type MenuItem = Required<MenuProps>['items'][number];
+
+function getItem(
+  label: ReactNode,
+  key?: React.Key | null,
+  icon?: ReactNode,
+  children?: MenuItem[],
+  type?: 'group',
+): MenuItem {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+  } as MenuItem;
+}
+
+let idRoot = 0
+// !思考过程，已经不需要了
+const data = sideMenuListMock.map((item, indexroot) => {
+  return {
+    label: item.title,
+    key: idRoot++,
+    children: [...item.subMenu.map((item, index) => {
+      return {
+        label: item.title,
+        key: idRoot++,
+        children: [
+          ...item.subMenu.map((item, index) => {
+            return {
+              label: item,
+              icon: <GifOutlined />,
+              key: idRoot++
+            }
+          })
+        ]
+      }
+    })]
+  }
+})
+const menuDataHandle = (arrRouter) => {
+  if (typeof arrRouter[0] === 'string') {
+    return [
+      ...arrRouter.map((item) => {
+        return getItem(item, idRoot++, <GifOutlined />)
+      })
+    ]
+  }
+  return [...arrRouter.map(item => {
+    return getItem(item.title, idRoot++, null, menuDataHandle(item.subMenu))
+  })]
+}
+const menuData = menuDataHandle(sideMenuListMock)
+
 
 export const SideMenu: FC = () => {
   return (
-    <Menu mode='vertical' className={styles['side-menu']}>
-      {
-        sideMenuList.map((m, index) => (
-          <Menu.SubMenu
-            key={`side-menu-${index}`}
-            title={<span>{m.title}</span>}
-          >
-            {m.subMenu.map((sm, index) => (
-              <Menu.SubMenu
-                key={`sub-menu-${index}`}
-                title={sm.title}
-              >
-                {sm.subMenu.map((sms, index) => (
-                  <Menu.Item
-                    key={`sub-sub-menu-${index}`}
-                  >
-                    <span><GifOutlined />{sms}</span>
-                  </Menu.Item>
-                ))}
-              </Menu.SubMenu>
-            ))}
-          </Menu.SubMenu>
-        ))
-      }
-    </Menu>
+    <Menu mode='vertical' items={menuData} className={styles['side-menu']} />
   )
 }
