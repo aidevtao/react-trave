@@ -24,8 +24,6 @@ export const getShoppingCart = createAsyncThunk(
         },
       }
     );
-    console.log('shoppingcart', data);
-
     return data.shoppingCartItems;
   }
 );
@@ -52,7 +50,7 @@ export const checkout = createAsyncThunk(
   "shoppingCart/checkout",
   async (jwt: string, thunkAPI) => {
     const { data } = await axios.post(
-      `https://a4ea270b-392f-46ae-85ce-67d987eea002.mock.pstmn.io/clearShoppingCart`,
+      `https://a4ea270b-392f-46ae-85ce-67d987eea002.mock.pstmn.io/shoppingCart/checkout`,
       null,
       {
         headers: {

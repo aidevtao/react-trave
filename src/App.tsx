@@ -1,5 +1,6 @@
 import React, { FC, useEffect } from 'react';
-import { DetailPage, HomePage, NotFoundPage, RegisterPage, SignInPage, SearchPage, ShoppingCartPage } from './pages'
+import { DetailPage, HomePage, NotFoundPage, RegisterPage, SignInPage, SearchPage, ShoppingCartPage, PlaceOrderPage } from './pages'
+import { ProtectedRoute } from "./components";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import styles from './App.module.css';
 import { getShoppingCart } from './redux/shoppingCart/slice'
@@ -23,7 +24,8 @@ const App: FC = () => {
           <Route path='/detail/:touristRouteId' element={<DetailPage />} />
           <Route path='/search/:keywords' element={<SearchPage />} />
           <Route path='/search' element={<SearchPage />} />
-          <Route path='/cart' element={<ShoppingCartPage />} />
+          <Route path='/cart' element={<ProtectedRoute user={jwt} redirectPath='/signin' children={<ShoppingCartPage />} />} />
+          <Route path='/placeOrder' element={<ProtectedRoute user={jwt} redirectPath='/signin' children={<PlaceOrderPage />} />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>

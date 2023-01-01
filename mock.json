@@ -100,5 +100,60 @@
         "discountPresent": null
       }
     ]
+  },
+  "order": {
+    "id": "a44c4106-a604-4f47-ae21-d448598fe46e",
+    "userId": "ded45b4b-63fd-4e44-9a54-ed1d95ff7e1b",
+    "orderItems": [
+      {
+        "id": 45,
+        "touristRouteId": "39996f34-013c-4fc6-b1b3-0c1036c47110",
+        "touristRoute": {
+          "id": "39996f34-013c-4fc6-b1b3-0c1036c47110",
+          "title": "东方明珠＋卡萨布兰卡＋马拉喀什＋舍夫沙万12日跟团游（5钻）",
+          "description": "【世界加油】明星一价全包｜免签｜25人封顶｜特色沙漠酒店夜观繁星＋卡萨升国5喜来登｜赠骆驼骑行换装秀＋撒哈拉四驱车＋YSL花园下午茶＋表演秀｜网红餐厅",
+          "price": 15490.00,
+          "originalPrice": 15490.00,
+          "discountPresent": null,
+          "rating": 3,
+          "travelDays": "Three",
+          "tripType": "BackPackTour",
+          "departureCity": "Shenzhen",
+          "createTime": "0001-01-01T00:00:00",
+          "updateTime": null,
+          "departureTime": null,
+          "touristRoutePictures": []
+        },
+        "price": 15490.00,
+        "originalPrice": 15490.00,
+        "discountPresent": null
+      },
+      {
+        "id": 46,
+        "touristRouteId": "41096f34-013c-4fc6-b1b3-0c1036c47110",
+        "touristRoute": {
+          "id": "39996f34-013c-4fc6-b1b3-0c1036c47110",
+          "title": "东方明珠＋卡萨布兰卡＋马拉喀什＋舍夫沙万12日跟团游（5钻）",
+          "description": "【世界加油】明星一价全包｜免签｜25人封顶｜特色沙漠酒店夜观繁星＋卡萨升国5喜来登｜赠骆驼骑行换装秀＋撒哈拉四驱车＋YSL花园下午茶＋表演秀｜网红餐厅",
+          "price": 13390.00,
+          "originalPrice": 13390.00,
+          "discountPresent": null,
+          "rating": 3,
+          "travelDays": "Three",
+          "tripType": "BackPackTour",
+          "departureCity": "Shenzhen",
+          "createTime": "0001-01-01T00:00:00",
+          "updateTime": null,
+          "departureTime": null,
+          "touristRoutePictures": []
+        },
+        "price": 13390.00,
+        "originalPrice": 13390.00,
+        "discountPresent": null
+      }
+    ],
+    "state": "Completed",
+    "createDateUTC": "2021-02-07T18:58:19.206883",
+    "transactionMetadata": "ok"
   }
 }
