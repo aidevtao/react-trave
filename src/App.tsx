@@ -1,5 +1,16 @@
 import React, { FC, useEffect } from 'react';
-import { DetailPage, HomePage, NotFoundPage, RegisterPage, SignInPage, SearchPage, ShoppingCartPage, PlaceOrderPage } from './pages'
+import {
+  DetailPage,
+  HomePage,
+  NotFoundPage,
+  RegisterPage,
+  SignInPage,
+  SearchPage,
+  ShoppingCartPage,
+  PlaceOrderPage,
+  MarginCollapsing,
+  HolyGrailLayout,
+} from './pages'
 import { ProtectedRoute } from "./components";
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import styles from './App.module.css';
@@ -26,6 +37,8 @@ const App: FC = () => {
           <Route path='/search' element={<SearchPage />} />
           <Route path='/cart' element={<ProtectedRoute user={jwt} redirectPath='/signin' children={<ShoppingCartPage />} />} />
           <Route path='/placeOrder' element={<ProtectedRoute user={jwt} redirectPath='/signin' children={<PlaceOrderPage />} />} />
+          <Route path='/margin' element={<MarginCollapsing />} />
+          <Route path='/grail' element={<HolyGrailLayout />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>

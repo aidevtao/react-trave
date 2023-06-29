@@ -6,4 +6,6 @@ export * from './detail'
 export * from './search'
 export * from './shoppingCart'
 export * from './placeOrder'
+export * from '../test/marginCollapsing'
+export * from '../test/holyGrailLayout'
 
