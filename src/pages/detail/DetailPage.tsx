@@ -25,7 +25,6 @@ export const DetailPage: FC<RouteProps> = () => {
   const RangePicker: any = DatePicker.RangePicker
 
   const jwt = useSelector((s) => s.user.token) as string
-  const shoppingCartLoading = useSelector((s) => s.shoppingCart.loading)
 
   useEffect(() => {
     dispatch(getProductDetail(touristRouteId))
