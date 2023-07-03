@@ -27,8 +27,6 @@ export const searchProduct = createAsyncThunk(
       url += `&keyword=${paramaters.keywords}`;
     }
     const response = await axios.get(url);
-    console.log('res', response.data.header['x-pagination']);
-
 
     return {
       data: response.data.data,
@@ -49,7 +47,6 @@ export const productSearchSlice = createSlice({
       state.loading = true
     },
     [searchProduct.fulfilled.type]: (state, action) => {
-      console.log('fulfillled');
 
       state.data = action.payload.data
       state.pagination = action.payload.pagination
@@ -57,8 +54,6 @@ export const productSearchSlice = createSlice({
       state.error = null
     },
     [searchProduct.rejected.type]: (state, aciton: PayloadAction<string | null>) => {
-      console.log('rejected');
-
       state.loading = false
       state.error = aciton.payload
     }

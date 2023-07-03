@@ -30,7 +30,6 @@ export const SignInForm = () => {
   }, [jwt, navigate])
 
   const onFinish = (values: any) => {
-    console.log("Success:", values);
     dispatch(signIn({
       email: values.username,
       password: values.password
